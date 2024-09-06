@@ -319,7 +319,7 @@ void renderReferenceTriangle(const tcu::PixelBufferAccess &dst, const tcu::Vec4 
 
     renderer.draw(rr::DrawCommand(renderState, renderTarget, program, DE_LENGTH_OF_ARRAY(vertexAttribs),
                                   &vertexAttribs[0],
-                                  rr::PrimitiveList(rr::PRIMITIVETYPE_TRIANGLES, DE_LENGTH_OF_ARRAY(vertices), 0)));
+                                  rr::PrimitiveList(rr::PRIMITIVETYPE_POINTS, DE_LENGTH_OF_ARRAY(vertices), 0)));
 }
 
 tcu::TestStatus renderTriangleTest(Context &context)
@@ -449,7 +449,8 @@ tcu::TestStatus renderTriangleTest(Context &context)
                              *fragShaderModule, // const VkShaderModule              fragmentShaderModule
                              *renderPass,       // const VkRenderPass                renderPass
                              viewports,         // const std::vector<VkViewport>&    viewports
-                             scissors));        // const std::vector<VkRect2D>&      scissors
+                             scissors,
+                             VK_PRIMITIVE_TOPOLOGY_POINT_LIST));        // const std::vector<VkRect2D>&      scissors
 
     // Framebuffer
     const VkFramebufferCreateInfo framebufferParams = {
